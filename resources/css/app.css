@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-full bg-kafe-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-kafe-700 focus:outline-none focus:ring-2 focus:ring-kafe-400 focus:ring-offset-2;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center rounded-full border-2 border-kafe-600 bg-white px-6 py-2.5 text-sm font-semibold text-kafe-700 transition hover:bg-kafe-50;
+    }
+
+    .section-title {
+        @apply font-display text-3xl font-semibold tracking-tight text-kafe-950 md:text-4xl;
+    }
+}

@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBookingRequest;
 use App\Models\Booking;
-use App\Services\WhatsAppMessageBuilder;
+use App\Services\AdminNotificationService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class BookingController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('booking.create', [
             'partyTypes' => config('kafe.party_types'),
@@ -16,10 +19,18 @@ class BookingController extends Controller
         ]);
     }
 
-    public function store(StoreBookingRequest $request, WhatsAppMessageBuilder $whatsapp)
+    public function store(StoreBookingRequest $request, AdminNotificationService $notifications): RedirectResponse
     {
-        $booking = Booking::create($request->validated());
+        DB::transaction(function () use ($request, $notifications): void {
+            $booking = Booking::create($request->validated());
+            $notifications->notifyBooking(
+                $booking,
+                'new_booking',
+                'New party booking',
+                sprintf('%s requested a party booking for %s guests.', $booking->customer_name, $booking->guest_count)
+            );
+        });
 
-        return redirect()->away($whatsapp->bookingUrl($booking));
+        return redirect()->route('booking.create')->with('success', 'Your booking request has been sent to the café.');
     }
 }

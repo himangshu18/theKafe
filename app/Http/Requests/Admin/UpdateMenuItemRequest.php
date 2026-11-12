@@ -17,11 +17,12 @@ class UpdateMenuItemRequest extends FormRequest
             'menu_category_id' => ['required', 'exists:menu_categories,id'],
             'name' => ['required', 'string', 'max:160'],
             'description' => ['nullable', 'string', 'max:1000'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'price' => ['required', 'numeric', 'min:0', 'max:99999999.99', 'decimal:0,2'],
+            'food_type' => ['required', 'in:veg,egg,chicken'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'is_available' => ['sometimes', 'boolean'],
             'is_featured' => ['sometimes', 'boolean'],
-            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'sort_order' => ['nullable', 'integer', 'min:0', 'max:65535'],
         ];
     }
 }

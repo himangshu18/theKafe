@@ -11,10 +11,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $user = request()->user();
+
         return view('admin.dashboard', [
-            'menuCount' => MenuItem::count(),
-            'pendingBookings' => Booking::where('status', 'pending')->count(),
-            'recentOrders' => Order::withCount('items')->latest()->limit(5)->get(),
+            'menuCount' => $user->canManageMenu() ? MenuItem::count() : null,
+            'pendingBookings' => $user->canManageBookings() ? Booking::where('status', 'pending')->count() : null,
+            'pendingOrders' => $user->canManageOrders()
+                ? Order::whereIn('status', ['submitted', 'accepted', 'preparing', 'ready'])->count()
+                : null,
+            'recentOrders' => $user->canManageOrders()
+                ? Order::withCount('items')->latest()->limit(5)->get()
+                : collect(),
         ]);
     }
 }

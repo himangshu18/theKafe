@@ -9,7 +9,7 @@
     <title>@yield('title', config('kafe.name'))</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=dm-sans:400,500,600,700|playfair-display:500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=dm-sans:400,500,600,700|playfair-display:500,600,700|dancing-script:400,500,600,700&display=swap" rel="stylesheet" />
     <link rel="icon" href="{{ asset(config('kafe.logo')) }}" type="image/jpeg">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -32,7 +32,6 @@
     </main>
 
     @include('partials.footer')
-    @include('partials.whatsapp-float')
     @stack('scripts')
 </body>
 </html>

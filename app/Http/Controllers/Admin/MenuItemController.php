@@ -13,7 +13,10 @@ class MenuItemController extends Controller
 {
     public function index()
     {
-        $items = MenuItem::with('category')->orderBy('sort_order')->get();
+        $items = MenuItem::with('category')
+            ->withCount(['variations', 'addonGroups', 'availabilitySchedules'])
+            ->orderBy('sort_order')
+            ->get();
         $categories = MenuCategory::orderBy('sort_order')->get();
 
         return view('admin.menu.index', compact('items', 'categories'));
@@ -28,7 +31,7 @@ class MenuItemController extends Controller
             $data['image_path'] = $request->file('image')->store('menu', 'public');
         }
 
-        $data['is_available'] = $request->boolean('is_available', true);
+        $data['is_available'] = $request->boolean('is_available');
         $data['is_featured'] = $request->boolean('is_featured', false);
         $data['sort_order'] = $data['sort_order'] ?? 0;
 

@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MenuCategory extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'slug',
+        'description',
+        'image_path',
         'sort_order',
         'is_active',
     ];

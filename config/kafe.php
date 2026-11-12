@@ -8,21 +8,13 @@ return [
     |--------------------------------------------------------------------------
     */
     'logo' => env('KAFE_LOGO', '/images/logo.jpg'),
+    // 'logo' => env('KAFE_LOGO', '/images/logo-pink.png'),
 
     'name' => env('KAFE_NAME', 'The Kafe'),
-    'tagline' => env('KAFE_TAGLINE', 'Pure veg · Chai · Coffee · Comfort food'),
+    'tagline' => env('KAFE_TAGLINE', 'Chai · Coffee · Snacks · Meals'),
     'location' => env('KAFE_LOCATION', 'Jakhalabandha, Assam'),
     'instagram' => env('KAFE_INSTAGRAM', 'https://www.instagram.com/the_kafe_jakhalabandha/'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Owner phone for WhatsApp orders & bookings
-    | Set KAFE_OWNER_PHONE in .env (change anytime; then: php artisan config:clear)
-    | Format: country code + number, no + or spaces — e.g. 919876543210
-    | KAFE_WHATSAPP is supported as a legacy alias.
-    |--------------------------------------------------------------------------
-    */
-    'whatsapp_number' => env('KAFE_OWNER_PHONE', env('KAFE_WHATSAPP', '')),
+    'owner_password' => env('KAFE_OWNER_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

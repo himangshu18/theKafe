@@ -20,7 +20,7 @@ class MenuCategoryController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:120'],
-            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'sort_order' => ['nullable', 'integer', 'min:0', 'max:65535'],
         ]);
 
         MenuCategory::create([
@@ -37,7 +37,7 @@ class MenuCategoryController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:120'],
-            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'sort_order' => ['nullable', 'integer', 'min:0', 'max:65535'],
             'is_active' => ['sometimes', 'boolean'],
         ]);
 

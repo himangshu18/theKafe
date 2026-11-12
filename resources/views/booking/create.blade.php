@@ -5,7 +5,7 @@
 @section('content')
 <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
     <h1 class="section-title">Book a celebration</h1>
-    <p class="mt-2 text-kafe-700">Birthdays, anniversaries, or a quiet family dinner — tell us your date and we’ll confirm on WhatsApp.</p>
+    <p class="mt-2 text-kafe-700">Birthdays, anniversaries, or a quiet family dinner — send your request and the café team will follow up.</p>
 
     @if ($errors->any())
         <div class="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800 ring-1 ring-red-200">
@@ -27,7 +27,7 @@
 
         <div class="grid gap-5 sm:grid-cols-2">
             <div>
-                <label class="block text-sm font-medium text-kafe-800">Phone / WhatsApp</label>
+                <label class="block text-sm font-medium text-kafe-800">Mobile number</label>
                 <input type="tel" name="customer_phone" value="{{ old('customer_phone') }}" required class="mt-1 w-full rounded-lg border-kafe-200 focus:border-kafe-500 focus:ring-kafe-500">
             </div>
             <div>
@@ -70,7 +70,7 @@
             <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border-kafe-200 focus:border-kafe-500 focus:ring-kafe-500" placeholder="Cake, décor, menu preferences…">{{ old('message') }}</textarea>
         </div>
 
-        <button type="submit" class="btn-primary w-full">Send booking via WhatsApp</button>
+        <button type="submit" class="btn-primary w-full">Submit booking request</button>
     </form>
 </div>
 @endsection
